@@ -1,0 +1,15 @@
+
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualNode
+metadata:
+  name: podinfo
+  namespace: apps
+spec:
+  meshName: global
+  listeners:
+    - portMapping:
+        port: 9898
+        protocol: http
+  serviceDiscovery:
+    dns:
+      hostName: podinfo.apps.svc.cluster.local
