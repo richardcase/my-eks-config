@@ -13,3 +13,37 @@ spec:
   serviceDiscovery:
     dns:
       hostName: podinfo.apps.svc.cluster.local
+---
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualNode
+metadata:
+  name: podinfo-v1
+  namespace: apps
+spec:
+  meshName: global
+  listeners:
+    - portMapping:
+        port: 9898
+        protocol: http
+  serviceDiscovery:
+    dns:
+      hostName: podinfo-v1.apps.svc.cluster.local
+---
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualService
+metadata:
+  name: podinfo.apps.svc.cluster.local
+  namespace: apps
+spec:
+  meshName: global
+  virtualRouter:
+    name: podinfo-router
+  routes:
+    - name: podinfo-route
+      http:
+        match:
+          prefix: /
+        action:
+          weightedTargets:
+            - virtualNodeName: podinfo-v1
+              weight: 100
