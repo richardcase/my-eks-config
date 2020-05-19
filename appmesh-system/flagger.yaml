@@ -7,7 +7,7 @@ metadata:
 spec:
   releaseName: flagger
   chart:
-    repository: https://aws.github.io/eks-charts/
+    repository: https://flagger.app/
     name: flagger
     version: 0.9.0
   values:
