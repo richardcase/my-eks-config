@@ -1,4 +1,4 @@
-git stat# create configmap for prometheus cwagent config
+# create configmap for prometheus cwagent config
 apiVersion: v1
 data:
   # cwagent json config
