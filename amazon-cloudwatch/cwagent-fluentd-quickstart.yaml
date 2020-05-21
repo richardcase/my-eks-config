@@ -59,7 +59,7 @@ data:
       "logs": {
         "metrics_collected": {
           "kubernetes": {
-            "cluster_name": "eksworkshop",
+            "cluster_name": "gitopsworkshop",
             "metrics_collection_interval": 60
           }
         },
@@ -162,10 +162,10 @@ spec:
 ---
 
 # create configmap for cluster name and aws region for CloudWatch Logs
-# need to replace the placeholders eksworkshop and eu-west-2
+# need to replace the placeholders gitopsworkshop and eu-west-2
 apiVersion: v1
 data:
-  cluster.name: eksworkshop
+  cluster.name: gitopsworkshop
   logs.region: eu-west-2
 kind: ConfigMap
 metadata:
